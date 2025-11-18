@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megawork Academy</title>
+</head>
+<body>
+    <h1 id="titulo"></h1>
+    <p>Bem-vindo ao treinamento de Fiori Full Stack.</p>
+    <div>
+        <div id="conteudoSaudacao">Olá, visitante!</div>
+        <button onclick="mudarSaudacao()">Personalizar saudação</button>
+    </div>
+    <script>
+        function mudarSaudacao(){
+            document.getElementById("conteudoSaudacao").textContent = "Olá, Rafael!"    
+        }
+        let curso = "Fiori Full Stack";
+        document.getElementById("titulo").textContent = "Curso: " + curso;
+    </script>
+</body>
+</html>

@@ -1,16 +1,22 @@
 function adicionarCliente(){
-    let mensagem = "Cliente adicionado com sucesso!";
-    document.getElementById("mensagem").textContent = mensagem;
-
     let cliente = document.getElementById("inputCliente");
-    let valueCliente = cliente.value;
+    let valueCliente = cliente.value.trim();
+    const mensagem = document.getElementById("mensagem");
     //document.getElementById("mensagem").textContent = valueCliente;
 
-    let listaClientes = document.getElementById("listaClientes");
+    if (valueCliente =="") {
+        let mensagemErro = "Nome do cliente não pode estar em branco";
+        mensagem.textContent = mensagemErro;
+    } else {
+
+    const listaClientes = document.getElementById("listaClientes");
     let novoCliente = document.createElement("li");
     novoCliente.textContent = valueCliente;
     listaClientes.appendChild(novoCliente);
     
+    let mensagemSucesso = "Cliente adicionado com sucesso!";
+    mensagem.textContent = mensagemSucesso;
+    }
+
     document.getElementById("inputCliente").value = "";
-    //console.log(cliente);
 }

@@ -1,88 +1,78 @@
-let clientes = [];
+let materiais = [];
 
-//Habilita o uso de ENTER no input para adicionar cliente
+// Habilita o uso de ENTER no input para adicionar material
 document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('inputCliente');
+    const input = document.getElementById('inputMaterial');
     if (input) {
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                adicionarCliente();
+                adicionarMaterial();
             }
         });
     }
 });
 
-function adicionarCliente(){
-        
-    let cliente = document.getElementById("inputCliente");
-    let valueCliente = cliente.value.trim();
+function adicionarMaterial(){
+    const input = document.getElementById("inputMaterial");
+    const valorMaterial = input.value.trim();
     const mensagem = document.getElementById("mensagem");
 
-    if (valueCliente =="") {
-        let mensagemErro = "Nome do cliente não pode estar em branco";
-        mensagem.textContent = mensagemErro;
-    } else {
-
-    clientes.push(valueCliente);
-    
-    montaListaTela();
-
-    let mensagemSucesso = "Cliente adicionado com sucesso!";
-    mensagem.textContent = mensagemSucesso;
+    if (valorMaterial === "") {
+        mensagem.textContent = "Nome do material não pode estar em branco";
+        return;
     }
 
-    document.getElementById("inputCliente").value = "";
+    materiais.push(valorMaterial);
+    montaListaMateriais();
+    mensagem.textContent = "Material adicionado com sucesso!";
+    input.value = "";
 }
 
-function montaListaTela(){
-    
-    const listaClientes = document.getElementById("listaClientes");
-    listaClientes.innerHTML = "";
-    
-    for(let i = 0; i < clientes.length; i++){
-        let novoCliente = document.createElement("li");
-        novoCliente.textContent = clientes[i];
+function montaListaMateriais(){
+    const lista = document.getElementById("listaMateriais");
+    lista.innerHTML = "";
 
-        let botaoRemover = document.createElement("button");
-        novoCliente.appendChild(botaoRemover);
+    for(let i = 0; i < materiais.length; i++){
+        const item = document.createElement("li");
+        item.textContent = materiais[i];
+
+        const botaoRemover = document.createElement("button");
         botaoRemover.className = "remover";
         botaoRemover.textContent = "Remover";
-        botaoRemover.onclick = () => removerCliente(i);
+        botaoRemover.onclick = () => removerMaterial(i);
+        item.appendChild(botaoRemover);
 
-        let botaoEditar = document.createElement("button");
-        novoCliente.appendChild(botaoEditar);
+        const botaoEditar = document.createElement("button");
         botaoEditar.className = "editar";
         botaoEditar.textContent = "Editar";
-        botaoEditar.onclick = () => editarCliente(i);
+        botaoEditar.onclick = () => editarMaterial(i);
+        item.appendChild(botaoEditar);
 
-        listaClientes.appendChild(novoCliente);
+        lista.appendChild(item);
     }
 }
 
-function removerCliente(i){
-    clientes.splice(i, 1);
-    montaListaTela();
-    
+function removerMaterial(i){
+    materiais.splice(i, 1);
+    montaListaMateriais();
     const mensagem = document.getElementById("mensagem");
-    mensagem.textContent = "Cliente removido com sucesso!";
+    mensagem.textContent = "Material removido com sucesso!";
 }
 
-function editarCliente(i){
-    let clienteEditar =  prompt("Insira o novo valor de cliente: ");
-
-    if(clienteEditar.trim() !== ""){
-        clientes[i] = clienteEditar;
-        montaListaTela();
+function editarMaterial(i){
+    const novoValor = prompt("Insira o novo valor do material:");
+    if (novoValor && novoValor.trim() !== "") {
+        materiais[i] = novoValor.trim();
+        montaListaMateriais();
         const mensagem = document.getElementById("mensagem");
-        mensagem.textContent = "Cliente editado com sucesso!";
+        mensagem.textContent = "Material editado com sucesso!";
     }
 }
 
-function deletarClientes(){
-    clientes.length = 0;
-    montaListaTela();
-
+function deletarMaterial(){
+    materiais.length = 0;
+    montaListaMateriais();
     const mensagem = document.getElementById("mensagem");
-    mensagem.textContent = "Clientes deletados com sucesso!";
+    mensagem.textContent = "Materiais deletados com sucesso!";
 }

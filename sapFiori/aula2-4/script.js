@@ -18,7 +18,6 @@ function adicionarCliente(){
     let cliente = document.getElementById("inputCliente");
     let valueCliente = cliente.value.trim();
     const mensagem = document.getElementById("mensagem");
-    //document.getElementById("mensagem").textContent = valueCliente;
 
     if (valueCliente =="") {
         let mensagemErro = "Nome do cliente não pode estar em branco";
@@ -26,7 +25,6 @@ function adicionarCliente(){
     } else {
 
     clientes.push(valueCliente);
-    console.log(clientes);
     
     montaListaTela();
 
@@ -45,6 +43,46 @@ function montaListaTela(){
     for(let i = 0; i < clientes.length; i++){
         let novoCliente = document.createElement("li");
         novoCliente.textContent = clientes[i];
+
+        let botaoRemover = document.createElement("button");
+        novoCliente.appendChild(botaoRemover);
+        botaoRemover.className = "remover";
+        botaoRemover.textContent = "Remover";
+        botaoRemover.onclick = () => removerCliente(i);
+
+        let botaoEditar = document.createElement("button");
+        novoCliente.appendChild(botaoEditar);
+        botaoEditar.className = "editar";
+        botaoEditar.textContent = "Editar";
+        botaoEditar.onclick = () => editarCliente(i);
+
         listaClientes.appendChild(novoCliente);
     }
+}
+
+function removerCliente(i){
+    clientes.splice(i, 1);
+    montaListaTela();
+    
+    const mensagem = document.getElementById("mensagem");
+    mensagem.textContent = "Cliente removido com sucesso!";
+}
+
+function editarCliente(i){
+    let clienteEditar =  prompt("Insira o novo valor de cliente: ");
+
+    if(clienteEditar.trim() !== ""){
+        clientes[i] = clienteEditar;
+        montaListaTela();
+        const mensagem = document.getElementById("mensagem");
+        mensagem.textContent = "Cliente editado com sucesso!";
+    }
+}
+
+function deletarClientes(){
+    clientes.length = 0;
+    montaListaTela();
+
+    const mensagem = document.getElementById("mensagem");
+    mensagem.textContent = "Clientes deletados com sucesso!";
 }

@@ -1,0 +1,28 @@
+<mvc:View controllerName="megaacademy.mod2handson.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+                <Table id="filmsTable" items="{/results}">
+                    <columns>
+                        <Column id="colTitle"><Text id="hdrTitle" text="Título"/></Column>
+                        <Column id="colEpisode"><Text id="hdrEpisode" text="Episódio"/></Column>
+                        <Column id="colDirector"><Text id="hdrDirector" text="Diretor"/></Column>
+                        <Column id="colProducer"><Text id="hdrProducer" text="Produtor"/></Column>
+                        <Column id="colRelease"><Text id="hdrRelease" text="Data de Lançamento"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="rowTemplate">
+                            <cells>
+                                <Text id="cellTitle" text="{title}"/>
+                                <ObjectNumber id="cellEpisode" number="{episode_id}"/>
+                                <Text id="cellDirector" text="{director}"/>
+                                <Text id="cellProducer" text="{producer}"/>
+                                <Text id="cellRelease" text="{path: 'release_date', formatter: '.formatarData'}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </content>
+    </Page>
+</mvc:View>

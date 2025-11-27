@@ -1,0 +1,41 @@
+<mvc:View controllerName="megaacademy.mod2aula2.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <StepInput id="stepInput" change="onBuscarPersonagem" visible="{= ${device>/system/desktop} === true ? true : false}"/>
+            <Slider id="sliderBuscarPersonagem" class="sapUiMediumMarginBottom" change="onBuscarPersonagem" visible="{= ${device>/system/phone} === true ? true : false}"/>
+            <VBox id="boxControls">
+                <Title id="titleDetalhamento" text="Detalhamento do Personagem Selecionado: " class="sapUiMediumMarginTop sapUiMediumMarginBottom"></Title>
+                <Label id="labelName" text="{/name}"></Label>
+                <Text id="textEyeColor" text="{/eye_color}"></Text>
+            </VBox>
+            <!-- <Table id="resultsTable" items="{/results}">
+                <columns>
+                    <Column id="colName">
+                        <Text id="txtColName" text="Nome"></Text>
+                    </Column>
+                    <Column id="colHeight">
+                        <Text id="txtColHeight" text="Altura (cm)"></Text>
+                    </Column>
+                    <Column id="colMass">
+                        <Text id="txtColMass" text="Massa (kg)"></Text>
+                    </Column>
+                    <Column id="colEyeColor">
+                        <Text id="txtColEyeColor" text="Cor dos olhos"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="resultRow">
+                        <cells>
+                            <Label id="lblName" text="{name}"></Label>
+                            <Label id="lblHeight" text="{height}"></Label>
+                            <Label id="lblMass" text="{mass}"></Label>
+                            <Label id="lblEyeColor" text="{eye_color}"></Label>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table> -->
+        </content>
+    </Page>
+</mvc:View>
